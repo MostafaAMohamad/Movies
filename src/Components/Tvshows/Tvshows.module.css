@@ -1,0 +1,21 @@
+.movies {
+    position: relative !important;
+  }
+  
+   .border{
+      background-color: #a8a8a83d;
+      height: 3px;
+   }
+   
+   
+  .vote{
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    position:absolute !important;
+    top: 0;
+    right: 0;
+    font-size: small;  
+      background-color: #24b9efb4;
+  }
+  
