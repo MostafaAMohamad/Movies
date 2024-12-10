@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import styles from './People'
 import axios from 'axios'
-
+import { useNavigate } from 'react-router-dom';
 export default function People() {
   let[trenditem,settrenditem]=useState([])
   let baseimgurl='https://image.tmdb.org/t/p/original/'
@@ -11,9 +11,11 @@ export default function People() {
     console.log(data.results)
   
   }
+  let navigat=useNavigate()
   useEffect(()=>
     {
     getitems(settrenditem); 
+    navigat({search :`?pram=${1}`})
     },[])
   
     return (

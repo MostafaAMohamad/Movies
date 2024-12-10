@@ -1,9 +1,12 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import styles from './Home.module.css'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 export default function Home() {
+  let [seacrhparamater,setsearchparamater]=useSearchParams()
+  let pra=seacrhparamater.get('pram')
+  let current_id='1';
 let[trenditem,settrenditem]=useState([])
 let[trendtvshow,settrendtvshow]=useState([])
 
@@ -19,7 +22,11 @@ function gotodetail(id){
  navigat({
   pathname:'/detail',
   search:`?id=${id}`
+  
  })
+}
+function gotologin(){
+  navigat('/login')
 }
 
 
@@ -28,18 +35,18 @@ useEffect(()=>
   
 getitems("movie",settrenditem);
 getitems("tv",settrendtvshow);
-
+navigat({search :`?pram=${1}`});
 },[])
   return (
     <>
-      <div className="row ">
+     {current_id==pra?<div> <div className="row ">
         <div className="col-md-4 mt-4  ms-0">
           <div className="welcome  my-0  ">
             <div className={`${styles.border} w-25 my-4 `}></div>
-              <h2>Trending</h2>
-              <h2>Movies</h2>
-              <h2>To watch now</h2>
-              <p>most watched movies by day</p>
+              <h1>Trending</h1>
+              <h1>Movies</h1>
+              <h1>To watch now</h1>
+              <h5>most watched movies by day</h5>
 
             <div className={`${styles.border} w-75 my-4`}></div>
            <div/>
@@ -48,9 +55,10 @@ getitems("tv",settrendtvshow);
         </div>
        {trenditem.length>0? trenditem.map((movie)=>
         (
-          <div onClick={()=>gotodetail(movie.id)} key={movie.id} className="col-md-2 mt-4">
-              <div className={`movies ${styles.movies}`}>
-                <div className="img w-100 ">
+          <div onClick={()=>gotodetail(movie.id)} key={movie.id} className="col-md-2  mt-4">
+              <div className={`movies overflow-hidden ${styles.movies}`}>
+                <div className={`img  w-100` }>
+                
                  <img className='w-100' src={baseimgurl+movie.poster_path} />
                   </div>
                   <div className={`${styles.vote}  d-flex align-items-center justify-content-center`}>{movie.vote_average}</div>
@@ -65,10 +73,10 @@ getitems("tv",settrendtvshow);
         <div className="col-md-4 mt-4  ms-0">
           <div className="welcome  my-0  ">
             <div className={`${styles.border} w-25 my-4 `}></div>
-              <h2>Trending</h2>
-              <h2>Tv Shows</h2>
-              <h2>To watch now</h2>
-              <p>most watched Yv Shows by day</p>
+              <h1>Trending</h1>
+              <h1>Tv Shows</h1>
+              <h1>To watch now</h1>
+              <h5>most watched Yv Shows by day</h5>
 
             <div className={`${styles.border} w-75 my-4`}></div>
            <div/>
@@ -88,7 +96,12 @@ getitems("tv",settrendtvshow);
           </div>
         )
         ): <div className='d-flex justify-content-center align-items-center vh-100 '><i className='fa fa-spinner fa-spin fa-5x bg-ganger'></i></div>}
-      </div>
+      </div></div>: <div className="note bg-gradient shadow-lg p-3 mb-5  rounded">
+        <h2>Note:</h2>
+        <h4>please You need to log in first</h4>
+        <button onClick={gotologin} className='btn btn-info my-2'>Log in</button>
+
+      </div>}
     </>
   )
 }

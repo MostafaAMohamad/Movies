@@ -1,7 +1,8 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { useSearchParams } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import styles from './Details.module.css'
+
 export default function Details() {
   let [seacrhparam,setsearchparam]=useSearchParams()
   let[detail,setdetail]=useState({});
@@ -14,14 +15,15 @@ async function getitems(type) {
   setdetail(data)
   setdet(data.genres)
   
-  console.log(data.genres)
-
 
 }
+
+let navigat=useNavigate();
 
 useEffect(()=>
   {
   getitems('movie');
+  navigat({search :`?pram=${1}`});
   },[])
 
   return (

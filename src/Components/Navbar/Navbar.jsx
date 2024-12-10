@@ -1,8 +1,26 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import styles from'./Navnar.module.css'
+import { useSearchParams } from 'react-router-dom'
+
 export default function Navbar() {
-  
+  let [seacrhparam,setsearchparam]=useSearchParams()
+  let p=seacrhparam.get('pram')
+let current_id='1';
+
+let navigat=useNavigate()
+function detail(data){
+ navigat({
+  pathname:'/movies',
+  search:`?name=${data}?pram=${1}`
+ })
+}
+useEffect(()=>
+  {
+  setsearchparam(p); 
+  navigat({search :`?pram=${1}`})
+  },[])
+
   return (
     <>
      <nav className={`${styles.nav} navbar navbar-expand-lg sticky-top navbar-light`}>
@@ -12,7 +30,7 @@ export default function Navbar() {
       <span className="navbar-toggler-icon"></span>
     </button>
     <div className="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+      {current_id==p?<ul className="navbar-nav me-auto mb-2 mb-lg-0">
         <li className="nav-item font">
           <Link className="nav-link active" aria-current="page" to="home">Home</Link>
         </li>
@@ -28,11 +46,8 @@ export default function Navbar() {
        
        
         
-      </ul>
-      <form class="d-flex ms-auto " role="search">
-        <input class="form-control " type="search" placeholder="Search" aria-label="Search"/>
-  
-      </form>
+      </ul>:" " }
+    
       <ul className="navbar-nav ms-auto  mb-2 mb-lg-0">
         <div className="social-icons d-flex align-items-center">
           <i className='fab mx-2 fa-facebook'></i>
@@ -40,15 +55,18 @@ export default function Navbar() {
           <i className='fab mx-2 fa-instagram'></i>
           <i className='fab mx-2 fa-youtube'></i>
         </div>
-        <li className="nav-item">
-          <Link className="nav-link" to="login">Login</Link>
-        </li>
-        <li className="nav-item">
+       {current_id==p?<ul className="navbar-nav ms-auto  mb-2 mb-lg-0"> <li className="nav-item">
+          <Link className="nav-link" to="login">Logout</Link>
+        </li> <li className="nav-item">
           <Link className="nav-link" to="register">Register </Link>
         </li>
-        <li className="nav-item">
-          <Link className="nav-link" to="logout">Logout</Link>
-        </li>
+        </ul>
+        :<li className="nav-item">
+        <Link className="nav-link" to="login">Login</Link>
+      </li>}
+        
+        
+        
         
         
       </ul>

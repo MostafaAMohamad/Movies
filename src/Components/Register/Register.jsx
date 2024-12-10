@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
 import joi from 'joi';
+import Login from '../Login/Login';
+
 export default function Register() {
   let [users,setusers]=useState({
     first_name:'',

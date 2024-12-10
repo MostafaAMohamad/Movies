@@ -16,10 +16,12 @@ export default function Rawdtty() {
     setcont(data.results.splice(0,3))
     console.log(cont)
     }
+    let navigat=useNavigate();
     useEffect(()=>
         { 
         getitems(settrenditem)
         getitems(setcont); 
+        navigat({search :`?pram=${1}`})
         },[])
   return (
     <>

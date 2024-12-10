@@ -1,4 +1,4 @@
-import React   from 'react';
+import React, { useCallback, useEffect, useState }   from 'react';
 import '../../App.css';
 import About from '../About/About';
 import Details from '../Details/Details';
@@ -11,17 +11,32 @@ import Notfound from '../Notfound/Notfound';
 import People from '../People/People';
 import Register from '../Register/Register';
 import Tvshows from '../Tvshows/Tvshows';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import Rawdtty from '../Rawdtty/Rawdtty';
-function App() {
+import { useSearchParams } from 'react-router-dom'
+import Logout from '../Logout/Logout';
 
+function App() {
+  let [seacrhparam,setsearchparam]=useSearchParams()
+let navigate=useNavigate()
+
+let[ current_id,setcurrent_id]=useState(0);
+
+  useEffect(()=>
+    {
+    
+    setcurrent_id(seacrhparam.get('pram'));
+    setsearchparam(current_id);
+    navigate({search:`pram=${current_id}`})
+    
+    },[])
   return (
     <>
   
-     <Navbar/>
+     <Navbar />
    <div className="container">
    <Routes>
-   <Route path='/' element={<Home/>}></Route>
+   <Route path='/' element={<Login/>}></Route>
       <Route path='home' element={<Home/>}></Route>
       <Route path='movie' element={<Movies/>}></Route>
       <Route path='tvshows' element={<Tvshows/>}></Route>

@@ -3,28 +3,52 @@ import joi from 'joi';
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
+
 export default function Login() {
+
   let [users,setusers]=useState({
-    first_name:'',
-    last_name:'',
-    age:'',
     email:'',
-    password:''
+    password: '',
 });
+let bool=false;
 const  navigator=useNavigate();
 let[loading,setloading]=useState(false)
-function gotoHome(){
-  navigator('/home')
+let navigat=useNavigate()
+function gotoHome(pram,check){
+  bool=check
+  if(bool===true){
+    navigat({
+      pathname:'/home',
+      search:`?pram=${pram}`
+     })
+  }
+  else
+  navigator('/login')
 }
-  async function send_data(pram){
-    pram.preventDefault()
-    setloading(true)
-    let v=validation()
-    console.log(v.error.details)
+   function send_data(pram){
+    pram.preventDefault()   
+    const useremail='mostafa.a.mohamad@hotmail.com';
+    const  userpassword='123';
+
+    //console.log(v.error.details)
     //let[data]=await axios.post("https://routeegypt.herokuapp.com/signup",users)
   //console.log(data)
-  gotoHome();
-  setloading(false)
+  if(useremail==users.email)
+  {
+    if (userpassword===users.password )
+     {
+    setloading(true)
+    gotoHome(1,true);
+    }
+     else {
+       console.log('faild')
+       alert('Please try again')
+  }
+}
+  else {
+   console.log('faild')
+   alert('Please try again')
+  }
   }
   function get_data(data){
     let user={...users};
@@ -36,15 +60,22 @@ function gotoHome(){
   function validation(){
     const schema=joi.object({
     email:joi.string().email({tlds:{allow:['net','com']}}).required(),
-    password:joi.string().pattern(new RegExp(/^[a-z][0-9][3]$/)).required(),
+   // password:joi.string().pattern(new RegExp(/^[a-z][0-9][3]$/)).required(),
     })
     return schema.validate(users,{abortEarly:false})
   }
   return (
     <>
+    
      <div className='my-5 w-75 m-auto'>
       <h1>Login Form</h1>
      <form onSubmit={send_data}>
+      <div className="note bg-gradient shadow-lg p-3 mb-5  rounded">
+        <h2>Note:</h2>
+        <h4>please use this credentials temporary</h4>
+        <h6>user name: 'mostafa.a.mohamad@hotmail.com' </h6>
+        <h6>password: '123' </h6>
+      </div>
       <div className="input-gp my-2">
       <label htmlFor="email">Email :</label>
       <input onChange={get_data} type="text" name='email' className='form-control' />
@@ -53,7 +84,7 @@ function gotoHome(){
       <label htmlFor="password">Password</label>
       <input onChange={get_data} type="password" name='password' className='form-control' />
       </div>
-      <button  className='btn btn-info my-2'>{loading?<i className='fa fa-spinner fa-spin'></i>:'Register'}</button>
+      <button  className='btn btn-info my-2'>{loading?<i className='fa fa-spinner fa-spin'></i>:'Log in'}</button>
      </form>
       </div> 
     </>
