@@ -39,7 +39,8 @@ navigat({search :`?pram=${1}`});
 },[])
   return (
     <>
-     {current_id==pra?<div> <div className="row ">
+     {current_id==pra?<div> 
+      <div className="row ">
         <div className="col-md-4 mt-4  ms-0">
           <div className="welcome  my-0  ">
             <div className={`${styles.border} w-25 my-4 `}></div>

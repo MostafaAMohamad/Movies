@@ -27,7 +27,7 @@ function gotoHome(pram,check){
 }
    function send_data(pram){
     pram.preventDefault()   
-    const useremail='mostafa.a.mohamad@hotmail.com';
+    const useremail='mostafa@hotmail.com';
     const  userpassword='123';
 
     //console.log(v.error.details)
@@ -73,7 +73,7 @@ function gotoHome(pram,check){
       <div className="note bg-gradient shadow-lg p-3 mb-5  rounded">
         <h2>Note:</h2>
         <h4>please use this credentials temporary</h4>
-        <h6>user name: 'mostafa.a.mohamad@hotmail.com' </h6>
+        <h6>user name: 'mostafa@hotmail.com' </h6>
         <h6>password: '123' </h6>
       </div>
       <div className="input-gp my-2">
