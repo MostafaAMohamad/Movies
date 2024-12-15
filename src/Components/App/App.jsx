@@ -12,10 +12,10 @@ import People from '../People/People';
 import Register from '../Register/Register';
 import Tvshows from '../Tvshows/Tvshows';
 import { Route, Routes, useNavigate } from 'react-router-dom';
-import Rawdtty from '../Rawdtty/Parent';
+import Rawdtty from '../Parent/Parent';
 import { useSearchParams } from 'react-router-dom'
 import Logout from '../Logout/Logout';
-import Parent from '../Rawdtty/Parent';
+import Parent from '../Parent/Parent';
 
 function App() {
   let [seacrhparam,setsearchparam]=useSearchParams()
