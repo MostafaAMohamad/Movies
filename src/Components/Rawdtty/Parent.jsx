@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useNavigate ,useSearchParams} from 'react-router-dom';
-export default function Rawdtty() {
+export default function Parent() {
   let [seacrhparamater,setsearchparamater]=useSearchParams()
   let pra=seacrhparamater.get('pram')
   let current_id='1';

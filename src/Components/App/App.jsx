@@ -12,9 +12,10 @@ import People from '../People/People';
 import Register from '../Register/Register';
 import Tvshows from '../Tvshows/Tvshows';
 import { Route, Routes, useNavigate } from 'react-router-dom';
-import Rawdtty from '../Rawdtty/Rawdtty';
+import Rawdtty from '../Rawdtty/Parent';
 import { useSearchParams } from 'react-router-dom'
 import Logout from '../Logout/Logout';
+import Parent from '../Rawdtty/Parent';
 
 function App() {
   let [seacrhparam,setsearchparam]=useSearchParams()
@@ -42,12 +43,12 @@ let[ current_id,setcurrent_id]=useState(0);
       <Route path='tvshows' element={<Tvshows/>}></Route>
       <Route path='people' element={<People/>}></Route>
       <Route path='about' element={<About/>}></Route>
-      <Route path='rawdtty' element={<Rawdtty/>}></Route>
+      <Route path='home' element={<Parent/>}></Route>
       <Route path='detail' element={<Details/>}></Route>
       <Route path='login' element={<Login/>}></Route>
       <Route path='register' element={<Register/>}></Route>
       <Route path='network' element={<Networks/>}></Route>
-      <Route path='*' element={<Notfound/>}></Route>
+      <Route path='*' element={<Login/>}></Route>
       
     </Routes>
    </div> 

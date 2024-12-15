@@ -56,6 +56,9 @@ function gotoHome(pram,check){
     setusers(user);
     console.log(user)
   }
+  function gosigup(){
+    navigator ('/register')
+  }
 
   function validation(){
     const schema=joi.object({
@@ -85,6 +88,8 @@ function gotoHome(pram,check){
       <input onChange={get_data} type="password" name='password' className='form-control' />
       </div>
       <button  className='btn btn-info my-2'>{loading?<i className='fa fa-spinner fa-spin'></i>:'Log in'}</button>
+      <button  className='btn btn-info my-2 ms-2' onClick={gosigup}>Sign Up</button>
+
      </form>
       </div> 
     </>

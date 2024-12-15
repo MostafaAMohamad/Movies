@@ -5,16 +5,17 @@ import { useSearchParams } from 'react-router-dom'
 
 export default function Navbar() {
   let [seacrhparam,setsearchparam]=useSearchParams()
-  let p=seacrhparam.get('pram')
+  let p='0'
+  p=seacrhparam.get('pram')
 let current_id='1';
 
 let navigat=useNavigate()
-function detail(data){
- navigat({
-  pathname:'/movies',
-  search:`?name=${data}?pram=${1}`
- })
-}
+// function detail(data){
+//  navigat({
+//   pathname:'/movies',
+//   search:`?name=${data}?pram=${1}`
+//  })
+// }
 useEffect(()=>
   {
   setsearchparam(p); 
@@ -25,14 +26,14 @@ useEffect(()=>
     <>
      <nav className={`${styles.nav} navbar navbar-expand-lg sticky-top navbar-light`}>
   <div className="container-fluid">
-    <Link className="navbar-brand fs-4 fw-bold" to="home">Rawdtty</Link>
+    <Link className="navbar-brand fs-4 fw-bold" to="home">Movie Cloud</Link>
     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span className="navbar-toggler-icon"></span>
     </button>
     <div className="collapse navbar-collapse" id="navbarSupportedContent">
       {current_id==p?<ul className="navbar-nav me-auto mb-2 mb-lg-0">
         <li className="nav-item font">
-          <Link className="nav-link active" aria-current="page" to="home">Home</Link>
+          <Link className="nav-link active" aria-current="page">Home</Link>
         </li>
         <li className="nav-item">
           <Link className="nav-link" to="movie">Movies</Link>
